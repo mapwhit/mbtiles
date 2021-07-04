@@ -30,12 +30,9 @@
   "dependencies": {
     "@mapbox/sphericalmercator": "~1.1.0",
     "@mapbox/tiletype": "0.3.x",
-    "d3-queue": "~3.0.7",
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {
-    "eslint": "~5.16.0",
-    "eslint-config-unstyled": "^1.1.0",
     "sinon": "^9.0.2",
     "tape": "~4.10.1"
   },
@@ -43,6 +40,9 @@
     "node": ">= 10"
   },
   "scripts": {
-    "test": "eslint lib && tape test/*.js"
-  }
+    "test": "tape test/*.js"
+  },
+  "files": [
+    "lib"
+  ]
 }

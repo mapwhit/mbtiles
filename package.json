@@ -30,7 +30,7 @@
   "dependencies": {
     "@mapbox/sphericalmercator": "~1.1.0",
     "@mapbox/tiletype": "0.3.x",
-    "sqlite3": "^5.0.0"
+    "better-sqlite3": "^7.4.1"
   },
   "devDependencies": {
     "sinon": "^9.0.2",

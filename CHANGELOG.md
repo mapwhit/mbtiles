@@ -1,3 +1,10 @@
+
+# 1.0.0
+
+ - rename project to @mapwhith@mbtiles
+ - use better-sqlite3
+ - read only simplified API
+
 # 0.12.2
  - collects stats in terms of KM2 in a stats file
 

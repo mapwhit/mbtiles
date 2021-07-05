@@ -1,8 +1,8 @@
 {
-  "name": "@mapbox/mbtiles",
-  "version": "0.12.2",
-  "description": "Utilities and tilelive integration for the MBTiles format.",
-  "url": "http://github.com/mapbox/node-mbtiles",
+  "name": "@mapwhit/mbtiles",
+  "version": "1.0.0",
+  "description": "Utilities for reading the MBTiles format.",
+  "url": "https://github.com/mapwhit/mbtiles",
   "author": "Mapbox (https://www.mapbox.com)",
   "keywords": [
     "map",
@@ -14,10 +14,7 @@
     }
   ],
   "main": "./lib/mbtiles",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/mapbox/node-mbtiles.git"
-  },
+  "repository": "mapwhit/mbtiles",
   "contributors": [
     "Tom MacWright <tmcw>",
     "Will White <willwhite>",
@@ -25,19 +22,19 @@
     "Young Hahn <yhahn>",
     "Konstantin Käfer <kkaefer>",
     "Andrew Pendleton <apendleton>",
-    "Kai Dalgleish <kaibot3000>"
+    "Kai Dalgleish <kaibot3000>",
+    "Damian Krzeminski <pirxpilot@furkot.com>"
   ],
   "dependencies": {
-    "@mapbox/sphericalmercator": "~1.1.0",
-    "@mapbox/tiletype": "0.3.x",
-    "better-sqlite3": "^7.4.1"
+    "@mapbox/sphericalmercator": "~1",
+    "@mapbox/tiletype": "~0",
+    "better-sqlite3": "~7"
   },
   "devDependencies": {
-    "sinon": "^9.0.2",
-    "tape": "~4.10.1"
+    "tape": "~5"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 12"
   },
   "scripts": {
     "test": "tape test/*.js"

@@ -1,4 +1,8 @@
 
+# 1.0.1
+
+ - upgrade better-sqlite3 to ~8
+
 # 1.0.0
 
  - rename project to @mapwhith@mbtiles

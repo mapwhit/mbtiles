@@ -1,4 +1,11 @@
 
+1.1.0 / 2023-10-14
+==================
+
+ * replace Travis CI with github actions
+ * replace tape with native node test runner
+ * upgrade better-sqlite3 to 9.0.0
+
 # 1.0.1
 
  - upgrade better-sqlite3 to ~8

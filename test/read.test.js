@@ -1,6 +1,7 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
 const fs = require('fs');
 const MBTiles = require('..');
-const tape = require('tape');
 
 const fixtures = {
   plain_1: `${__dirname}/fixtures/plain_1.mbtiles`,
@@ -11,19 +12,16 @@ const fixtures = {
   corrupt_null_tile: `${__dirname}/fixtures/corrupt_null_tile.mbtiles`
 };
 
-function assertError(assert, err, msg) {
+function assertError(err, msg) {
   assert.ok(err, msg);
   const re = new RegExp(`^${msg}`, "i");
-  assert.ok(err.message.match(re));
+  assert.match(err.message, re);
 }
 
 const loaded = {};
 
-tape('setup', assert => {
-  Object.keys(fixtures).forEach(key => {
-    loaded[key] = new MBTiles(fixtures[key]);
-  });
-  assert.end();
+Object.keys(fixtures).forEach(key => {
+  loaded[key] = new MBTiles(fixtures[key]);
 });
 
 fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
@@ -33,15 +31,15 @@ fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
   // Flip Y coordinate because file names are TMS, but .getTile() expects XYZ.
   coords = [coords[3], coords[1], coords[2]];
   coords[2] = 2 ** coords[0] - 1 - coords[2];
-  tape(`tile ${coords.join('/')}`, assert => {
+  test(`tile ${coords.join('/')}`, () => {
     const { tile, headers, error } = loaded.plain_1.getTile(coords[0] | 0, coords[1] | 0, coords[2] | 0);
     assert.ifError(error);
     assert.deepEqual(tile, fs.readFileSync(`${__dirname}/fixtures/images/${file}`));
     assert.equal(headers['Content-Type'], 'image/png');
     assert.ok(!isNaN(Date.parse(headers['Last-Modified'])));
-    assert.end();
   });
 });
+
 [[0, 1, 0],
 [-1, 0, 0],
 [0, 0, 1],
@@ -50,10 +48,9 @@ fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
 [18, 2, 262140],
 [4, 0, 15]
 ].forEach(coords => {
-  tape(`tile ${coords.join('/')}`, assert => {
+  test(`tile ${coords.join('/')}`, () => {
     const { error } = loaded.plain_1.getTile(coords[0], coords[1], coords[2]);
-    assertError(assert, error, 'Tile does not exist');
-    assert.end();
+    assertError(error, 'Tile does not exist');
   });
 });
 
@@ -72,15 +69,13 @@ fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
 [3, 0, 7],
 [3, 6, 2]
 ].forEach(coords => {
-  tape(`corrupt ${coords.join('/')}`, assert => {
+  test(`corrupt ${coords.join('/')}`, () => {
     const { error } = loaded.corrupt.getTile(coords[0], coords[1], coords[2]);
-    assertError(assert, error, 'database disk image is malformed');
-    assert.end();
+    assertError(error, 'database disk image is malformed');
   });
 });
 
-tape('corrupt null tile', assert => {
+test('corrupt null tile', () => {
   const { error } = loaded.corrupt_null_tile.getTile(1, 0, 1);
-  assertError(assert, error, 'Tile is invalid');
-  assert.end();
+  assertError(error, 'Tile is invalid');
 });

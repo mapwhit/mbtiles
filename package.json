@@ -30,14 +30,12 @@
     "@mapbox/tiletype": "~0",
     "better-sqlite3": "~8"
   },
-  "devDependencies": {
-    "tape": "~5"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">= 12"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "node --test"
   },
   "files": [
     "lib"

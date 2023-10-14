@@ -1,11 +1,12 @@
-const tape = require('tape');
+const test = require('node:test');
+const assert = require('node:assert/strict');
 const MBTiles = require('..');
 
 const fixtures = {
   plain_1: `${__dirname}/fixtures/plain_1.mbtiles`,
 };
 
-tape('get metadata', function (assert) {
+test('get metadata', function () {
   const mbtiles = new MBTiles(fixtures.plain_1);
   const data = mbtiles.getInfo();
 
@@ -27,6 +28,4 @@ tape('get metadata', function (assert) {
     id: 'plain_1',
     basename: 'plain_1.mbtiles'
   }, data);
-
-  assert.end();
 });

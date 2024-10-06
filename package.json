@@ -28,7 +28,7 @@
   "dependencies": {
     "@mapbox/sphericalmercator": "~1",
     "@mapbox/tiletype": "~0",
-    "better-sqlite3": "~8"
+    "better-sqlite3": "~11"
   },
   "devDependencies": {},
   "engines": {

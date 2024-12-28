@@ -1,6 +1,6 @@
 {
   "name": "@mapwhit/mbtiles",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Utilities for reading the MBTiles format.",
   "url": "https://github.com/mapwhit/mbtiles",
   "author": "Mapbox (https://www.mapbox.com)",

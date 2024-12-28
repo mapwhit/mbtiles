@@ -14,7 +14,10 @@
     }
   ],
   "main": "./lib/mbtiles",
-  "repository": "mapwhit/mbtiles",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapwhit/mbtiles.git"
+  },
   "contributors": [
     "Tom MacWright <tmcw>",
     "Will White <willwhite>",

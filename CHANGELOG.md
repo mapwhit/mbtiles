@@ -1,4 +1,10 @@
 
+1.3.0 / 2025-01-31
+==================
+
+ * calculate headers from metadata if available
+ * add Makefile and lint target
+
 1.2.1 / 2024-12-28
 ==================
 

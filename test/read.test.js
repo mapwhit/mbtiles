@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const fs = require('fs');
+const fs = require('node:fs');
 const MBTiles = require('..');
 
 const fixtures = {
@@ -14,7 +14,7 @@ const fixtures = {
 
 function assertError(err, msg) {
   assert.ok(err, msg);
-  const re = new RegExp(`^${msg}`, "i");
+  const re = new RegExp(`^${msg}`, 'i');
   assert.match(err.message, re);
 }
 
@@ -32,21 +32,29 @@ fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
   coords = [coords[3], coords[1], coords[2]];
   coords[2] = 2 ** coords[0] - 1 - coords[2];
   test(`tile ${coords.join('/')}`, () => {
-    const { tile, headers, error } = loaded.plain_1.getTile(coords[0] | 0, coords[1] | 0, coords[2] | 0);
+    const { tile, headers, error } = loaded.plain_1.getTile(
+      coords[0] | 0,
+      coords[1] | 0,
+      coords[2] | 0
+    );
     assert.ifError(error);
-    assert.deepEqual(tile, fs.readFileSync(`${__dirname}/fixtures/images/${file}`));
+    assert.deepEqual(
+      tile,
+      fs.readFileSync(`${__dirname}/fixtures/images/${file}`)
+    );
     assert.equal(headers['Content-Type'], 'image/png');
-    assert.ok(!isNaN(Date.parse(headers['Last-Modified'])));
+    assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
   });
 });
 
-[[0, 1, 0],
-[-1, 0, 0],
-[0, 0, 1],
-[3, 1, -1],
-[2, -3, 3],
-[18, 2, 262140],
-[4, 0, 15]
+[
+  [0, 1, 0],
+  [-1, 0, 0],
+  [0, 0, 1],
+  [3, 1, -1],
+  [2, -3, 3],
+  [18, 2, 262140],
+  [4, 0, 15]
 ].forEach(coords => {
   test(`tile ${coords.join('/')}`, () => {
     const { error } = loaded.plain_1.getTile(coords[0], coords[1], coords[2]);
@@ -54,20 +62,21 @@ fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
   });
 });
 
-[[0, 1, 0],
-[-1, 0, 0],
-[0, 0, -1],
-[3, 1, 8],
-[2, -3, 0],
-[18, 2, 3],
-[4, 0, 0],
-[4, 3, 8],
-[4, 4, 8],
-[4, 5, 8],
-[4, 13, 4],
-[4, 0, 14],
-[3, 0, 7],
-[3, 6, 2]
+[
+  [0, 1, 0],
+  [-1, 0, 0],
+  [0, 0, -1],
+  [3, 1, 8],
+  [2, -3, 0],
+  [18, 2, 3],
+  [4, 0, 0],
+  [4, 3, 8],
+  [4, 4, 8],
+  [4, 5, 8],
+  [4, 13, 4],
+  [4, 0, 14],
+  [3, 0, 7],
+  [3, 6, 2]
 ].forEach(coords => {
   test(`corrupt ${coords.join('/')}`, () => {
     const { error } = loaded.corrupt.getTile(coords[0], coords[1], coords[2]);

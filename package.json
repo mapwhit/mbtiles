@@ -33,12 +33,14 @@
     "@mapbox/tiletype": "~0",
     "better-sqlite3": "~11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  },
   "engines": {
     "node": ">= 12"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "make check"
   },
   "files": [
     "lib"

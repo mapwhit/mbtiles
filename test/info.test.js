@@ -2,12 +2,8 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const MBTiles = require('..');
 
-const fixtures = {
-  plain_1: `${__dirname}/fixtures/plain_1.mbtiles`
-};
-
 test('get metadata', function () {
-  const mbtiles = new MBTiles(fixtures.plain_1);
+  const mbtiles = new MBTiles(`${__dirname}/fixtures/plain_1.mbtiles`);
   const data = mbtiles.getInfo();
 
   assert.deepEqual(
@@ -31,6 +27,34 @@ test('get metadata', function () {
       type: 'baselayer',
       id: 'plain_1',
       basename: 'plain_1.mbtiles'
+    },
+    data
+  );
+});
+
+test('get metadata 4', function () {
+  const mbtiles = new MBTiles(`${__dirname}/fixtures/plain_4.mbtiles`);
+  const data = mbtiles.getInfo();
+
+  assert.deepEqual(
+    {
+      name: 'plain_2',
+      description: '',
+      version: '1.0.0',
+      scheme: 'xyz',
+      minzoom: 0,
+      maxzoom: 4,
+      formatter:
+        "function(options, data) { if (options.format === 'full') { return '' + data.NAME + ' (Population: ' + data.POP2005 + ')'; } else { return '' + data.NAME + ''; } }",
+      center: [0, 5.0000000006793215, 2],
+      bounds: [
+        -179.9999999749438, -69.99999999526695, 179.9999999749438,
+        79.99999999662558
+      ],
+      filesize: 684032,
+      type: 'baselayer',
+      id: 'plain_4',
+      basename: 'plain_4.mbtiles'
     },
     data
   );

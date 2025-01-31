@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const MBTiles = require('..');
+const mbtiles = require('..');
 
 test('plain_1 valid tiles', async t => {
   let plain_1;
@@ -102,5 +102,5 @@ function assertError(err, msg) {
 function load(key) {
   const filename = path.resolve(__dirname, './fixtures', `${key}.mbtiles`);
   console.log(filename);
-  return new MBTiles(filename);
+  return mbtiles(filename);
 }

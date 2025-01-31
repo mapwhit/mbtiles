@@ -93,6 +93,14 @@ test('corrupt null tile', () => {
   assertError(error, 'Tile is invalid');
 });
 
+test('trust headers from metadata', async t => {
+  const { headers } = load('pbf-format').getTile(0, 0, 0);
+
+  assert.equal(headers['Content-Type'], 'application/x-protobuf');
+  assert.equal(headers['Content-Encoding'], 'gzip');
+  assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
+});
+
 function assertError(err, msg) {
   assert.ok(err, msg);
   const re = new RegExp(`^${msg}`, 'i');

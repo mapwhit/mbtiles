@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const fs = require('fs');
+const fs = require('node:fs');
 const MBTiles = require('..');
 
 const fixtures = {
@@ -36,7 +36,7 @@ fs.readdirSync(`${__dirname}/fixtures/images/`).forEach(file => {
     assert.ifError(error);
     assert.deepEqual(tile, fs.readFileSync(`${__dirname}/fixtures/images/${file}`));
     assert.equal(headers['Content-Type'], 'image/png');
-    assert.ok(!isNaN(Date.parse(headers['Last-Modified'])));
+    assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
   });
 });
 

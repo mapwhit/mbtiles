@@ -30,14 +30,13 @@
   ],
   "dependencies": {
     "@mapbox/sphericalmercator": "~1",
-    "@mapbox/tiletype": "~0",
-    "better-sqlite3": "~12"
+    "@mapbox/tiletype": "~0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 24"
   },
   "scripts": {
     "test": "make check"

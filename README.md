@@ -7,7 +7,7 @@
 This is a fork of [@mapbox/mbtiles].
 
 It only provides sync and read-only subset of API.
-It is using [better-sqllite3] instead of [sqllite3].
+It is using [node:sqlite] instead of [sqllite3].
 
 # Installation
 
@@ -56,7 +56,7 @@ npm test
 ```
 
 [@mapbox/mbtiles]: https://github.com/mapbox/node-mbtiles
-[better-sqllite3]: http://github.com/JoshuaWise/better-sqlite3
+[node:sqlite]: https://nodejs.org/api/sqlite.html
 [sqllite3]: https://github.com/mapbox/node-sqlite3
 
 [npm-image]: https://img.shields.io/npm/v/@mapwhit/mbtiles
@@ -67,4 +67,3 @@ npm test
 
 [deps-image]: https://img.shields.io/librariesio/release/npm/@mapwhit/mbtiles
 [deps-url]: https://libraries.io/npm/@mapwhit%2Fmbtiles
-

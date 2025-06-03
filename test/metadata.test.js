@@ -1,12 +1,12 @@
 const test = require('node:test');
-const Database = require('better-sqlite3');
+const { DatabaseSync } = require('node:sqlite');
 const { ensureZooms, ensureBounds, ensureCenter } = require('../lib/metadata');
 
 test('metadata ensureZooms', async t => {
   let db;
 
   t.before(() => {
-    db = new Database(':memory:');
+    db = new DatabaseSync(':memory:');
     db.exec(`
       CREATE TABLE tiles (
         zoom_level INTEGER,
@@ -46,7 +46,7 @@ test('metadata ensureBounds', async t => {
   let db;
 
   t.before(() => {
-    db = new Database(':memory:');
+    db = new DatabaseSync(':memory:');
     db.exec(`
       CREATE TABLE tiles (
         zoom_level INTEGER,

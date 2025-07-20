@@ -1,12 +1,11 @@
 const test = require('node:test');
-const assert = require('node:assert/strict');
 const MBTiles = require('..');
 
-test('get metadata', function () {
+test('get metadata', t => {
   const mbtiles = new MBTiles(`${__dirname}/fixtures/plain_1.mbtiles`);
   const data = mbtiles.getInfo();
 
-  assert.deepEqual(
+  t.assert.deepEqual(
     {
       name: 'plain_1',
       description: 'demo description',
@@ -32,11 +31,11 @@ test('get metadata', function () {
   );
 });
 
-test('get metadata 4', function () {
+test('get metadata 4', t => {
   const mbtiles = new MBTiles(`${__dirname}/fixtures/plain_4.mbtiles`);
   const data = mbtiles.getInfo();
 
-  assert.deepEqual(
+  t.assert.deepEqual(
     {
       name: 'plain_2',
       description: '',

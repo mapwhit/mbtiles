@@ -34,7 +34,7 @@
     "better-sqlite3": "~12"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4"
+    "@biomejs/biome": "2.1.2"
   },
   "engines": {
     "node": ">= 12"

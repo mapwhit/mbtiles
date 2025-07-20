@@ -1,5 +1,5 @@
 const test = require('node:test');
-const assert = require('node:assert/strict');
+const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -25,13 +25,13 @@ test('plain_1 valid tiles', async t => {
         coords[1] | 0,
         coords[2] | 0
       );
-      assert.ifError(error);
-      assert.deepEqual(
+      t.assert.ifError(error);
+      t.assert.deepEqual(
         tile,
         fs.readFileSync(`${__dirname}/fixtures/images/${file}`)
       );
-      assert.equal(headers['Content-Type'], 'image/png');
-      assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
+      t.assert.equal(headers['Content-Type'], 'image/png');
+      t.assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
     });
   }
 });
@@ -96,9 +96,9 @@ test('corrupt null tile', () => {
 test('trust headers from metadata', async t => {
   const { headers } = load('pbf-format').getTile(0, 0, 0);
 
-  assert.equal(headers['Content-Type'], 'application/x-protobuf');
-  assert.equal(headers['Content-Encoding'], 'gzip');
-  assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
+  t.assert.equal(headers['Content-Type'], 'application/x-protobuf');
+  t.assert.equal(headers['Content-Encoding'], 'gzip');
+  t.assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
 });
 
 function assertError(err, msg) {

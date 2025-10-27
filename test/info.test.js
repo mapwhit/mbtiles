@@ -1,8 +1,10 @@
-const test = require('node:test');
-const MBTiles = require('..');
+import test from 'node:test';
+import MBTiles from '../lib/mbtiles.js';
 
 test('get metadata', t => {
-  const mbtiles = new MBTiles(`${__dirname}/fixtures/plain_1.mbtiles`);
+  const mbtiles = new MBTiles(
+    `${import.meta.dirname}/fixtures/plain_1.mbtiles`
+  );
   const data = mbtiles.getInfo();
 
   t.assert.deepEqual(
@@ -32,7 +34,9 @@ test('get metadata', t => {
 });
 
 test('get metadata 4', t => {
-  const mbtiles = new MBTiles(`${__dirname}/fixtures/plain_4.mbtiles`);
+  const mbtiles = new MBTiles(
+    `${import.meta.dirname}/fixtures/plain_4.mbtiles`
+  );
   const data = mbtiles.getInfo();
 
   t.assert.deepEqual(

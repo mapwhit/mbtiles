@@ -1,16 +1,15 @@
-const test = require('node:test');
-const assert = require('node:assert');
-const fs = require('node:fs');
-const path = require('node:path');
-
-const mbtiles = require('..');
+import assert from 'node:assert';
+import fs from 'node:fs';
+import path from 'node:path';
+import test from 'node:test';
+import mbtiles from '../lib/mbtiles.js';
 
 test('plain_1 valid tiles', async t => {
   let plain_1;
   t.before(() => {
     plain_1 = load('plain_1');
   });
-  const files = fs.readdirSync(`${__dirname}/fixtures/images/`);
+  const files = fs.readdirSync(`${import.meta.dirname}/fixtures/images/`);
 
   for (const file of files) {
     let coords = file.match(/^plain_1_(\d+)_(\d+)_(\d+).png$/);
@@ -28,7 +27,7 @@ test('plain_1 valid tiles', async t => {
       t.assert.ifError(error);
       t.assert.deepEqual(
         tile,
-        fs.readFileSync(`${__dirname}/fixtures/images/${file}`)
+        fs.readFileSync(`${import.meta.dirname}/fixtures/images/${file}`)
       );
       t.assert.equal(headers['Content-Type'], 'image/png');
       t.assert.ok(!Number.isNaN(Date.parse(headers['Last-Modified'])));
@@ -108,7 +107,11 @@ function assertError(err, msg) {
 }
 
 function load(key) {
-  const filename = path.resolve(__dirname, './fixtures', `${key}.mbtiles`);
+  const filename = path.resolve(
+    import.meta.dirname,
+    './fixtures',
+    `${key}.mbtiles`
+  );
   console.log(filename);
   return mbtiles(filename);
 }

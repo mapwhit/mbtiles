@@ -1,6 +1,6 @@
-const test = require('node:test');
-const { DatabaseSync } = require('node:sqlite');
-const { ensureZooms, ensureBounds, ensureCenter } = require('../lib/metadata');
+import { DatabaseSync } from 'node:sqlite';
+import test from 'node:test';
+import { ensureBounds, ensureCenter, ensureZooms } from '../lib/metadata.js';
 
 test('metadata ensureZooms', async t => {
   let db;

@@ -1,3 +1,7 @@
+[![NPM version][npm-image]][npm-url]
+[![Build Status][build-image]][build-url]
+[![Dependency Status][deps-image]][deps-url]
+
 # mbtiles
 
 This is a fork of [@mapbox/mbtiles].
@@ -54,4 +58,13 @@ npm test
 [@mapbox/mbtiles]: https://github.com/mapbox/node-mbtiles
 [better-sqllite3]: http://github.com/JoshuaWise/better-sqlite3
 [sqllite3]: https://github.com/mapbox/node-sqlite3
+
+[npm-image]: https://img.shields.io/npm/v/@mapwhit/mbtiles
+[npm-url]: https://npmjs.org/package/@mapwhit/mbtiles
+
+[build-url]: https://github.com/mapwhit/mbtiles/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/actions/workflow/status/mapwhit/mbtiles/check.yaml?branch=main
+
+[deps-image]: https://img.shields.io/librariesio/release/npm/@mapwhit/mbtiles
+[deps-url]: https://libraries.io/npm/@mapwhit%2Fmbtiles
 

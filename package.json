@@ -8,11 +8,6 @@
     "map",
     "mbtiles"
   ],
-  "licenses": [
-    {
-      "type": "BSD"
-    }
-  ],
   "main": "./lib/mbtiles",
   "repository": {
     "type": "git",
@@ -43,5 +38,6 @@
   },
   "files": [
     "lib"
-  ]
+  ],
+  "license": "BSD-3-Clause"
 }

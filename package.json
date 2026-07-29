@@ -31,7 +31,7 @@
     "test": "make check"
   },
   "dependencies": {
-    "@mapbox/sphericalmercator": "~1",
+    "@mapbox/sphericalmercator": "~2",
     "@mapbox/tiletype": "~0"
   },
   "devDependencies": {

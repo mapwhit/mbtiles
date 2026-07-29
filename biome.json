@@ -3,7 +3,8 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedPackageJson": "on"
       }
     }
   },
@@ -38,21 +39,9 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "correctness": {
         "noUndeclaredVariables": "error"
-      },
-      "complexity": {
-        "noForEach": "off",
-        "useArrowFunction": "off",
-        "useLiteralKeys": "off"
-      },
-      "style": {
-        "noParameterAssign": "off",
-        "useTemplate": "off"
-      },
-      "performance": {
-        "noDelete": "off"
       },
       "suspicious": {
         "noAssignInExpressions": "off"

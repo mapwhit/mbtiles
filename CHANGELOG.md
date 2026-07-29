@@ -1,4 +1,12 @@
 
+2.0.0 / 2026-07-29
+==================
+
+ * upgrade `@mapbox/sphericalmercator` to v2
+ * upgrade `biome` to 2.5.6
+ * transition to ESM format
+ * use `node:sqlite` instead of `better-sqlite3`
+
 1.3.2 / 2025-10-27
 ==================
 

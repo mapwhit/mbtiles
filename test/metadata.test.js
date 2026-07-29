@@ -1,6 +1,11 @@
 import { DatabaseSync } from 'node:sqlite';
 import test from 'node:test';
-import { ensureBounds, ensureCenter, ensureZooms } from '../lib/metadata.js';
+import {
+  ensureBounds,
+  ensureCenter,
+  ensureZooms,
+  headersFromMetadata
+} from '../lib/metadata.js';
 
 test('metadata ensureZooms', async t => {
   let db;
@@ -99,4 +104,50 @@ test('metadata ensureCenter', async t => {
     ensureCenter(info);
     t.assert.deepEqual(info.center, [1, 2, 3]);
   });
+});
+
+test('headersFromMetadata different formats', t => {
+  const lastModified = 'Wed, 21 Oct 2015 07:28:00 GMT';
+
+  // Test pbf format
+  const pbfHeaders = headersFromMetadata({ format: 'pbf' }, lastModified);
+  t.assert.equal(pbfHeaders['Content-Type'], 'application/x-protobuf');
+  t.assert.equal(pbfHeaders['Content-Encoding'], 'gzip');
+  t.assert.equal(pbfHeaders['Last-Modified'], lastModified);
+
+  // Test jpg format
+  const jpgHeaders = headersFromMetadata({ format: 'jpg' }, lastModified);
+  t.assert.equal(jpgHeaders['Content-Type'], 'image/jpeg');
+  t.assert.equal(jpgHeaders['Last-Modified'], lastModified);
+
+  // Test png format
+  const pngHeaders = headersFromMetadata({ format: 'png' }, lastModified);
+  t.assert.equal(pngHeaders['Content-Type'], 'image/png');
+  t.assert.equal(pngHeaders['Last-Modified'], lastModified);
+
+  // Test webp format
+  const webpHeaders = headersFromMetadata({ format: 'webp' }, lastModified);
+  t.assert.equal(webpHeaders['Content-Type'], 'image/webp');
+  t.assert.equal(webpHeaders['Last-Modified'], lastModified);
+
+  // Test default format
+  const defaultHeaders = headersFromMetadata(
+    { format: 'custom' },
+    lastModified
+  );
+  t.assert.equal(defaultHeaders['Content-Type'], 'custom');
+  t.assert.equal(defaultHeaders['Last-Modified'], lastModified);
+
+  // Test with compression
+  const pbfGzipHeaders = headersFromMetadata(
+    { format: 'pbf', compression: 'gzip' },
+    lastModified
+  );
+  t.assert.equal(pbfGzipHeaders['Content-Encoding'], 'gzip');
+
+  const pbfNoCompressionHeaders = headersFromMetadata(
+    { format: 'pbf', compression: null },
+    lastModified
+  );
+  t.assert.equal(pbfNoCompressionHeaders['Content-Encoding'], 'gzip'); // should default to gzip
 });

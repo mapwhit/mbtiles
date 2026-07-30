@@ -11,12 +11,20 @@ It is using [node:sqlite] instead of [sqllite3].
 
 # Installation
 
-```
+```sh
 npm install @mapwhit/mbtiles
 ```
 
 ```javascript
-const MBTiles = require('@mapwhit/mbtiles');
+import MBTiles from '@mapwhit/mbtiles';
+```
+
+# Environment Variables
+
+This library uses the `MBTILES_PRAGMA` environment variable to control SQLite pragmas. Set this variable to customize SQLite behavior, for example:
+
+```sh
+MBTILES_PRAGMA="PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL;"
 ```
 
 # API
